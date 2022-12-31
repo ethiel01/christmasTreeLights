@@ -14,3 +14,4 @@ TODO
 
 ## End project
 
+![Christmas Tree Controller](images/christmasTreeController.jpg)
