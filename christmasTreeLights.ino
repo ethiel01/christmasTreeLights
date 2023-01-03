@@ -49,11 +49,22 @@ void setup() {
 
 }
 
+void DelayAdjustment(int index) {
+  float b = 40;
+  float endValue = 20;
+  float mLinear = (endValue - b) / 255;
+  float mExp = (endValue - b) / pow(255,2);
+  // float delayValue = endValue; // Fixed 
+  // float delayValue = mLinear * index + b; // Linear
+  float delayValue = mExp* pow(index, 2) + b; // Exponential
+  delay(int(delayValue));
+}
+
 void Brighten() {
   int i = 0;
   for(i = MIN ; i <= 255; i+=1) { 
     analogWrite(ENA, i);
-    delay(20);
+    DelayAdjustment(i);
   }
 }
 
@@ -61,7 +72,7 @@ void Dim() {
   int i = 0;
   for(i = 255; i >=MIN; i-=1) {
     analogWrite(ENA, i);
-    delay(20);
+    DelayAdjustment(i);
   }
   
 }
